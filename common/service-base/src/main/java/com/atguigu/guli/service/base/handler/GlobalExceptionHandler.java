@@ -2,6 +2,7 @@ package com.atguigu.guli.service.base.handler;
 
 import com.atguigu.guli.common.base.result.R;
 import com.atguigu.guli.common.base.result.ResultCodeEnum;
+import com.atguigu.guli.common.base.util.ExceptionUtils;
 import com.atguigu.guli.service.base.exception.GuliException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -24,7 +25,7 @@ public class GlobalExceptionHandler {
         //e.printStackTrace();
         //log.error(e.getMessage());
         log.error(ResultCodeEnum.JSON_PARSE_ERROR.toString());
-        log.error(com.atguigu.guli.common.util.ExceptionUtils.getMessage(e));
+        log.error(ExceptionUtils.getMessage(e));
         return R.error();
     }
 
@@ -34,7 +35,7 @@ public class GlobalExceptionHandler {
         //e.printStackTrace();
         //log.error(e.getMessage());
         log.error(ResultCodeEnum.JSON_PARSE_ERROR.toString());
-        log.error(com.atguigu.guli.common.util.ExceptionUtils.getMessage(e));
+        log.error(ExceptionUtils.getMessage(e));
         return R.setResult(ResultCodeEnum.BAD_SQL_GRAMMAR);
     }
 
@@ -44,7 +45,7 @@ public class GlobalExceptionHandler {
         //e.printStackTrace();
         //log.error(e.getMessage());
         log.error(ResultCodeEnum.JSON_PARSE_ERROR.toString());
-        log.error(com.atguigu.guli.common.util.ExceptionUtils.getMessage(e));
+        log.error(ExceptionUtils.getMessage(e));
         return R.setResult(ResultCodeEnum.JSON_PARSE_ERROR);
     }
 
@@ -52,7 +53,7 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public R error(GuliException e){
         log.error(ResultCodeEnum.JSON_PARSE_ERROR.toString());
-        log.error(com.atguigu.guli.common.util.ExceptionUtils.getMessage(e));
+        log.error(ExceptionUtils.getMessage(e));
         return R.error().message(e.getMessage()).code(e.getCode());
     }
 }

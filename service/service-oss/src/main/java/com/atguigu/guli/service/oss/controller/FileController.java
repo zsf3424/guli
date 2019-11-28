@@ -2,6 +2,7 @@ package com.atguigu.guli.service.oss.controller;
 
 import com.atguigu.guli.common.base.result.R;
 import com.atguigu.guli.common.base.result.ResultCodeEnum;
+import com.atguigu.guli.common.base.util.ExceptionUtils;
 import com.atguigu.guli.service.base.exception.GuliException;
 import com.atguigu.guli.service.oss.service.FileService;
 import io.swagger.annotations.Api;
@@ -51,7 +52,7 @@ public class FileController {
             uploadUrl = fileService.upload(inputStream, module, originalFilename);
         } catch (Exception e) {
             //添加异常跟踪信息
-            log.error(com.atguigu.guli.common.util.ExceptionUtils.getMessage(e));
+            log.error(ExceptionUtils.getMessage(e));
             throw new GuliException(ResultCodeEnum.FILE_UPLOAD_ERROR);
         }
 
@@ -69,7 +70,7 @@ public class FileController {
             fileService.removeFile(url);
         } catch (Exception e) {
             //添加异常跟踪信息
-            log.error(com.atguigu.guli.common.util.ExceptionUtils.getMessage(e));
+            log.error(ExceptionUtils.getMessage(e));
             throw new GuliException(ResultCodeEnum.FILE_UPLOAD_ERROR);
         }
 

@@ -1,4 +1,4 @@
-package com.atguigu.guli.common.util;
+package com.atguigu.guli.common.base.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
