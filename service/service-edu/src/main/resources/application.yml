@@ -26,6 +26,7 @@ spring:
     time-zone: GMT+8
 
 mybatis-plus:
+  mapper-locations: classpath:com/atguigu/guli/service/edu/mapper/xml/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #mybatis日志
 

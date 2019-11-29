@@ -5,6 +5,7 @@ import com.atguigu.guli.service.edu.entity.Course;
 import com.atguigu.guli.service.edu.entity.CourseDescription;
 import com.atguigu.guli.service.edu.entity.CourseInfoForm;
 import com.atguigu.guli.service.edu.entity.Video;
+import com.atguigu.guli.service.edu.entity.vo.CoursePublishVo;
 import com.atguigu.guli.service.edu.entity.vo.CourseQueryVo;
 import com.atguigu.guli.service.edu.mapper.ChapterMapper;
 import com.atguigu.guli.service.edu.mapper.CourseDescriptionMapper;
@@ -98,7 +99,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
         queryWrapper.orderByDesc("gmt_create");
 
-        if (courseQueryVo == null){
+        if (courseQueryVo == null) {
             baseMapper.selectPage(pageParam, queryWrapper);
             return;
         }
@@ -112,7 +113,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             queryWrapper.like("title", title);
         }
 
-        if (!StringUtils.isEmpty(teacherId) ) {
+        if (!StringUtils.isEmpty(teacherId)) {
             queryWrapper.eq("teacher_id", teacherId);
         }
 
@@ -152,6 +153,20 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
         //根据id删除课程
         baseMapper.deleteById(id);
+    }
+
+    @Override
+    public CoursePublishVo getCoursePublishVoById(String id) {
+        return baseMapper.selectCoursePublishVoById(id);
+    }
+
+
+    @Override
+    public void publishCourseById(String id) {
+        Course course = new Course();
+        course.setId(id);
+        course.setStatus(Course.COURSE_NORMAL);
+        baseMapper.updateById(course);
     }
 
 

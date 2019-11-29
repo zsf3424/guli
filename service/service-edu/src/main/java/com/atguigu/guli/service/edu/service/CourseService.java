@@ -2,6 +2,7 @@ package com.atguigu.guli.service.edu.service;
 
 import com.atguigu.guli.service.edu.entity.Course;
 import com.atguigu.guli.service.edu.entity.CourseInfoForm;
+import com.atguigu.guli.service.edu.entity.vo.CoursePublishVo;
 import com.atguigu.guli.service.edu.entity.vo.CourseQueryVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -31,4 +32,7 @@ public interface CourseService extends IService<Course> {
 
     void removeCourseById(String id);
 
+    CoursePublishVo getCoursePublishVoById(String id);
+
+    void publishCourseById(String id);
 }

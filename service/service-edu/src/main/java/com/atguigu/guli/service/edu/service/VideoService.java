@@ -1,6 +1,7 @@
 package com.atguigu.guli.service.edu.service;
 
 import com.atguigu.guli.service.edu.entity.Video;
+import com.atguigu.guli.service.edu.entity.from.VideoInfoForm;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -12,5 +13,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-11-20
  */
 public interface VideoService extends IService<Video> {
+
+    void saveVideoInfo(VideoInfoForm videoInfoForm);
+
+    VideoInfoForm getVideoInfoFormById(String id);
+
+    void updateVideoInfoById(VideoInfoForm videoInfoForm);
+
+    void removeVideoById(String id);
+
 
 }
