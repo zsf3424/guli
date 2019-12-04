@@ -4,8 +4,11 @@ package com.atguigu.guli.service.edu.controller;
 import com.atguigu.guli.common.base.result.R;
 import com.atguigu.guli.service.edu.entity.Course;
 import com.atguigu.guli.service.edu.entity.CourseInfoForm;
+import com.atguigu.guli.service.edu.entity.vo.ChapterVo;
 import com.atguigu.guli.service.edu.entity.vo.CoursePublishVo;
 import com.atguigu.guli.service.edu.entity.vo.CourseQueryVo;
+import com.atguigu.guli.service.edu.entity.vo.WebCourseVo;
+import com.atguigu.guli.service.edu.service.ChapterService;
 import com.atguigu.guli.service.edu.service.CourseService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
@@ -29,6 +32,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/edu/course")
 public class CourseController {
+
+    @Autowired
+    private ChapterService chapterService;
 
     @Autowired
     private CourseService courseService;
@@ -115,6 +121,7 @@ public class CourseController {
         courseService.publishCourseById(id);
         return R.ok();
     }
+
 
 }
 
