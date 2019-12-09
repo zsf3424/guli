@@ -3,6 +3,7 @@ package com.atguigu.guli.service.edu;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
  * @create 2019-11-20 18:32
  */
 
+@EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
 @ComponentScan({"com.atguigu.guli"})

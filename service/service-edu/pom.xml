@@ -33,6 +33,13 @@
             </resource>
         </resources>
     </build>
+    <dependencies>
+        <!--服务调用-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>

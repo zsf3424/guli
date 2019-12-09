@@ -92,4 +92,5 @@ public class FileServiceImpl implements FileService {
         // 关闭OSSClient。
         ossClient.shutdown();
     }
+
 }

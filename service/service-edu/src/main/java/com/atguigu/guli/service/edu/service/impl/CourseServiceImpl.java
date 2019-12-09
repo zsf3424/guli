@@ -1,5 +1,7 @@
 package com.atguigu.guli.service.edu.service.impl;
 
+import com.atguigu.guli.service.edu.client.OssClient;
+import com.atguigu.guli.service.edu.client.VodClient;
 import com.atguigu.guli.service.edu.entity.Chapter;
 import com.atguigu.guli.service.edu.entity.Course;
 import com.atguigu.guli.service.edu.entity.CourseDescription;
@@ -23,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +45,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     private VideoMapper videoMapper;
     @Autowired
     private ChapterMapper chapterMapper;
+
+    @Autowired
+    private OssClient ossClient;
+
+    @Autowired
+    private VodClient vodClient;
 
     //注意：为了避免idea在这个位置报告找不到依赖的错误，
     //我们可以在CourseDescriptionMapper接口上添加@Repository注解
@@ -138,11 +147,23 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public void removeCourseById(String id) {
 
-        //根据课程id删除阿里云课程视频
-        //TODO
+        //删除阿里云视频文件
+        QueryWrapper<Video> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select("video_source_id");
+        queryWrapper.eq("course_id", id);
+        List<Map<String, Object>> maps = videoMapper.selectMaps(queryWrapper);
+        List<String> videoSourceIdList = new ArrayList<>();
+        for (Map<String, Object> map : maps) {
+            String videoSourceId = (String)map.get("video_source_id");
+            videoSourceIdList.add(videoSourceId);
+        }
+        vodClient.removeVideoByIdList(videoSourceIdList);
 
-        //根据课程id删除阿里云课程封面
-        //TODO
+        //删除oss中的图片文件
+        //在此处调用oss中的删除图片文件的接口
+        Course course = baseMapper.selectById(id);
+        String cover = course.getCover();
+        ossClient.removeFile(cover);
 
         //根据id删除所有视频
         QueryWrapper<Video> queryWrapperVideo = new QueryWrapper<>();
@@ -160,6 +181,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         //根据id删除课程
         baseMapper.deleteById(id);
     }
+
 
     @Override
     public CoursePublishVo getCoursePublishVoById(String id) {

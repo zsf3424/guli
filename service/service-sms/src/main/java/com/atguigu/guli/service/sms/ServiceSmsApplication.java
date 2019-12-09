@@ -1,24 +1,20 @@
-package com.atguigu.guli.service.oss;
+package com.atguigu.guli.service.sms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author zsf
- * @create 2019-11-25 20:42
+ * @create 2019-12-09 18:27
  */
 
-
-@EnableDiscoveryClient
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//取消数据源自动配置
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ComponentScan({"com.atguigu.guli"})
-public class ServiceOssApplication {
+public class ServiceSmsApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceOssApplication.class, args);
+        SpringApplication.run(ServiceSmsApplication.class, args);
     }
-
 }

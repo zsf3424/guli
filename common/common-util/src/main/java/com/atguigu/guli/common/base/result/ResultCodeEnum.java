@@ -11,7 +11,7 @@ import lombok.ToString;
 @ToString
 public enum ResultCodeEnum {
 
-    SUCCESS(true, 20000, "成功"),
+    SUCCESS(true, 20000,"成功"),
     UNKNOWN_REASON(false, 20001, "未知错误"),
 
     BAD_SQL_GRAMMAR(false, 21001, "sql语法错误"),
@@ -42,12 +42,16 @@ public enum ResultCodeEnum {
     GATEWAY_ERROR(false, 26000, "服务不能访问"),
 
     CODE_ERROR(false, 28000, "验证码错误"),
-    LOGIN_MOBLE_ERROR(false, 28001, "账号不正确"),
+    LOGIN_MOBLE_ERROR(false, 28001, "账号或密码不正确"),
     LOGIN_DISABLED_ERROR(false, 28002, "该用户已被禁用"),
     REGISTER_MOBLE_ERROR(false, 28003, "手机号已被注册"),
     LOGIN_AURH(false, 28004, "需要登录"),
     LOGIN_ACL(false, 28005, "没有权限"),
-    ;
+
+    SMS_SEND_ERROR(false, 28006, "阿里云短信发送失败"),
+    SMS_SEND_ERROR_BUSINESS_LIMIT_CONTROL(false, 28007, "一分钟内只能发送一条短信");
+
+
 
     private Boolean success;
 

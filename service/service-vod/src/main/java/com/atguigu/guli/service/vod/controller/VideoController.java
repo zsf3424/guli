@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,6 +61,14 @@ public class VideoController {
             log.error(ExceptionUtils.getMessage(e));
             throw new GuliException(ResultCodeEnum.VIDEO_DELETE_ALIYUN_ERROR);
         }
+    }
+
+    @DeleteMapping("remove")
+    public R removeVideoByIdList(
+            @ApiParam(name="videoSourceId", value = "阿里云视频文件的id", required = true)
+            @RequestBody List<String> videoSourceIdList){
+        videoService.removeVideoByIdList(videoSourceIdList);
+        return  R.ok().message("视频删除成功");
     }
 
     /**
