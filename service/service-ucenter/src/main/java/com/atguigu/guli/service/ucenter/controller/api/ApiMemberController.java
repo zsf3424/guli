@@ -57,7 +57,7 @@ public class ApiMemberController {
         try {
             String memberId = JwtUtils.getMemberIdByJwtToken(request);
             LoginInfoVo loginInfoVo = memberService.getLoginInfo(memberId);
-            return R.ok().data("item", loginInfoVo);
+            return R.ok().data("loginInfo", loginInfoVo);
         }catch (Exception e){
             log.error("解析用户信息失败，" + e.getMessage());
             throw new GuliException(ResultCodeEnum.FETCH_USERINFO_ERROR);

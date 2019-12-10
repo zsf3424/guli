@@ -38,4 +38,11 @@ public interface MemberService extends IService<Member> {
      */
     LoginInfoVo getLoginInfo(String memberId);
 
+    /**
+     * 根据openid返回用户信息
+     * @param openid
+     * @return
+     */
+    Member getByOpenid(String openid);
+
 }
